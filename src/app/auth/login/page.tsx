@@ -1,38 +1,46 @@
 'use client';
 
-// import { useState } from 'react';
+import { useState } from 'react';
 
 const LoginPage = () => {
-  let email = '';
+  // destructuring
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const setEmail = (value: string) => {
-    email = value;
+  const onSubmitFunction = (e: React.ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(`email: ${email}`);
+    console.log(`password: ${password}`);
   };
-
-  // const [email, setEmail] = useState('');
 
   return (
     <div className="flex h-screen items-center justify-center">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log(`email: ${email}`);
-        }}
-      >
+      {/* (e: React.ChangeEvent<HTMLFormElement>) => onSubmit(e) */}
+      {/* onSubmit */}
+      <form onSubmit={onSubmitFunction}>
         <div>
           <label>E-mail</label>
           <input
             type="email"
             className="ml-6 border rounded"
-            onInput={(e) => {
+            onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
               setEmail(e.target.value);
             }}
+            value={email}
+            placeholder="Escreva seu e-email"
           />
         </div>
 
         <div>
           <label>Senha</label>
-          <input type="password" className="ml-6 border rounded" />
+          <input
+            type="password"
+            className="ml-6 border rounded"
+            onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setPassword(e.target.value);
+            }}
+            value={password}
+          />
         </div>
 
         <button
