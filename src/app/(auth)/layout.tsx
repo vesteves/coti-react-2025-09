@@ -1,5 +1,7 @@
 'use client';
 
+import Navbar from '@/components/atoms/Navbar';
+import Menu from '@/components/molecules/Menu';
 import { useAuth } from '@/hooks/useAuth';
 import { useEffect } from 'react';
 
@@ -15,12 +17,16 @@ export default function AuthLayout({
   }, [isNotAuthenticated]);
 
   return (
-    <>
-      <div className="bg-green-100 h-[100px]">Navbar</div>
+    <div>
       <div className="flex gap-2">
-        <div className="bg-red-100 h-screen w-md">Menu</div>
-        <div className="bg-blue-100 h-screen w-full">{children}</div>
+        <div className="w-[16rem]">
+          <Menu />
+        </div>
+        <div className="w-full">
+          <Navbar />
+          <div className="p-6">{children}</div>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
