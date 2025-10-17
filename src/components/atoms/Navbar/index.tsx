@@ -1,8 +1,18 @@
-const Navbar = () => {
+'use client';
+
+import MenuIcon from '@/icons/MenuIcon';
+
+interface MenuProps {
+  handleMenuClick: () => void;
+}
+
+const Navbar = ({ handleMenuClick }: MenuProps) => {
   return (
     <nav className="border-b px-6 py-3 flex items-center justify-between">
       <div className="flex gap-2">
-        <div>icon</div>
+        <div onClick={handleMenuClick} className="cursor-pointer">
+          <MenuIcon />
+        </div>
         <div>Title</div>
       </div>
       <div className="flex gap-2 items-center">

@@ -1,9 +1,9 @@
 'use client';
 
 import ButtonCreate from '@/components/atoms/ButtonCreate';
+import { useMenu } from '@/contexts/MenuContext';
 import {
   Paper,
-  Table,
   TableBody,
   TableCell,
   TableContainer,
@@ -11,6 +11,8 @@ import {
   TableRow,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
+
+import * as S from './style';
 
 interface User {
   id: number;
@@ -23,6 +25,7 @@ interface User {
 
 export const UsuariosPage = () => {
   const [users, setUsers] = useState<User[]>([]);
+  const { toggleMenu } = useMenu();
 
   const fetchData = async () => {
     const url = '/api/users';
@@ -59,14 +62,16 @@ export const UsuariosPage = () => {
   }, []);
 
   return (
-    <div>
+    <S.UsersContainer>
       <div className="flex justify-between items-center mb-6">
-        <div>Total de 5 funcionários cadastrados</div>
+        <div onClick={() => toggleMenu()}>
+          Total de 5 funcionários cadastrados
+        </div>
         <ButtonCreate />
       </div>
 
       <TableContainer component={Paper}>
-        <Table aria-label="Tabela de Usuários">
+        <S.TablelaDeUsuarios aria-label="Tabela de Usuários">
           <TableHead>
             <TableRow>
               <TableCell>Nome</TableCell>
@@ -98,9 +103,9 @@ export const UsuariosPage = () => {
               </TableRow>
             ))}
           </TableBody>
-        </Table>
+        </S.TablelaDeUsuarios>
       </TableContainer>
-    </div>
+    </S.UsersContainer>
   );
 };
 

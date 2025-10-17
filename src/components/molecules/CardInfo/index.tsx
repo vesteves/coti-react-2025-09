@@ -1,4 +1,6 @@
-const CardInfo = () => {
+'use client';
+
+const CardInfo = ({ toggleMenu }: { toggleMenu: () => void }) => {
   return (
     <div className="flex flex-col p-6 rounded-xl border border-gray-200">
       <div className="flex justify-between mb-8">
@@ -28,6 +30,12 @@ const CardInfo = () => {
           <div>2024-01-15</div>
         </div>
       </div>
+      <button
+        onClick={() => toggleMenu()}
+        className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-100"
+      >
+        Abrir/Fechar Menu
+      </button>
     </div>
   );
 };
